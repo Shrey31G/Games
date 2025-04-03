@@ -7,15 +7,41 @@
     <title>Ding Dong</title>
 </head>
 <style>
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Poppins:wght@300;400;600&display=swap');
+
     * {
         padding: 0px;
         margin: 0px;
+        box-sizing: border-box;
     }
 
     body {
-        text-align: center;
-        background-color: ghostwhite;
-        color: black
+        background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+        color: #fff;
+        font-family: 'Poppins', sans-serif;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 2rem 1rem;
+    }
+
+    .game-title {
+        font-family: 'Orbitron', sans-serif;
+        font-size: 3rem;
+        margin-bottom: 0.5rem;
+        background: linear-gradient(90deg, #4776E6 0%, #8E54E9 100%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        text-shadow: 0 0 20px rgba(142, 84, 233, 0.3);
+    }
+
+    .game-subtitle {
+        font-size: 1rem;
+        margin-bottom: 1.5rem;
+        color: #8E54E9;
+        letter-spacing: 1px;
     }
 
     canvas {
@@ -25,21 +51,55 @@
     }
 
     button {
-        padding: 12px 19px;
-        margin: 10px;
-        font-size: larger;
-        border: 1px solid black;
-        border-radius: 8px;
-        font-weight: bold;
+        font-family: 'Poppins', sans-serif;
+        font-weight: 600;
+        padding: 0.75rem 2rem;
+        border: none;
+        border-radius: 50px;
         cursor: pointer;
+        font-size: 1rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: all 0.3s ease;
+        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
     }
 
-    .startB {
-        background-color: rgb(29, 228, 29);
+    .canvas-container {
+        position: relative;
+        width: 100%;
+        max-width: 1000px;
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+        margin-bottom: 3rem;
     }
 
-    .stopB {
-        background-color: red;
+    canvas {
+        display: block;
+        width: 100%;
+        background: #0f0f1b;
+        border: 2px solid rgba(142, 84, 233, 0.5);
+        border-radius: 15px;
+    }
+
+    .start-btn {
+        background: linear-gradient(90deg, #00b09b, #96c93d);
+        color: white;
+    }
+
+    .stop-btn {
+        background: linear-gradient(90deg, #ff416c, #ff4b2b);
+        color: white;
+    }
+
+    button:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 12px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    button:active {
+        transform: translateY(1px);
     }
 
     .timeText {
@@ -56,25 +116,46 @@
         font-size: larger;
         font-weight: bold;
     }
+
+    @media (max-width: 768px) {
+        .game-title {
+            font-size: 2rem;
+        }
+
+        .game-info {
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .scores-container {
+            gap: 1rem;
+        }
+    }
 </style>
 
 <body>
-    <h1>Ping Pong Game</h1>
+    <h1 class="game-title">Ping Pong Game</h1>
+    <p class="game-subtitle">CHALLENGE THE AI IN A CLASSIC DUEL</p>
 
     <div style="display: flex; align-items: center; justify-content: center; margin-top: 10px; margin-bottom: 10px;">
         <h2 class="timeText">Timer :</h2>
         <h2 class="timer">0</h2>
     </div>
 
-    <div style="display: flex; align-items: center; justify-content: center; margin-top: 10px; margin-bottom: 10px; gap: 15px;">
-        <div class="pScore">Player:</div>
-        <div class="aiScore">Ai:</div>
+    <div
+        style="display: flex; align-items: center; justify-content: center; margin-top: 10px; margin-bottom: 10px; gap: 15px;">
+        <div class="pScore">Player Score:</div>
+        <div class="aiScore">Ai Score:</div>
     </div>
 
-    <canvas id="gameCanvas" width="1000" height="600"></canvas>
+    <div class="canvas-container">
+        <canvas id="gameCanvas" width="1000" height="600"></canvas>
+    </div>
 
-    <button onclick="startGame()" class="startB">Start</button>
-    <button onclick="stopGame()" class="stopB">Stop</button>
+    <div style="display: flex; gap: 3rem;">
+        <button onclick="startGame()" class="startB">Start</button>
+        <button onclick="stopGame()" class="stopB">Stop</button>
+    </div>
     <script src="script.js">
     </script>
 </body>
